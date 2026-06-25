@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eine kleine Frage... ✨</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        h2 {
+            color: #ff477e;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        p {
+            color: #4f5d75;
+            margin-bottom: 25px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        button, .submit-btn {
+            background-color: #ff477e;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 5px 15px rgba(255, 71, 126, 0.3);
+        }
+
+        button:hover, .submit-btn:hover {
+            background-color: #ff7096;
+            transform: translateY(-2px);
+        }
+
+        button.step-down {
+            background-color: #cbd5e1;
+            color: #4f5d75;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        button.step-down:hover {
+            background-color: #94a3b8;
+            color: white;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ffc2d1;
+            border-radius: 10px;
+            font-size: 16px;
+            color: #4f5d75;
+            outline: none;
+            margin-bottom: 25px;
+            background-color: white;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .heart-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+            animation: beat 1.2s infinite;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+
+
+        }
+
+
+
+        #escapBtn {
+    background-color: #cbd5e1;
+    color: #4f5d75;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+    z-index: 999;
+}
+
+
+
+
+
+ /* 🌟 استایل‌های شبکه چهارخونه‌ای شیک */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* چیدمان دو ستونه */
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* برای اینکه اگر تعداد فرد بود، گزینه آخر وسط قرار بگیرد */
+.grid-item:last-child {
+    grid-column: span 2;
+    max-width: 50%;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.grid-item {
+    background: #ffffff;
+    border: 2px solid #ffc2d1;
+    border-radius: 15px;
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 10px rgba(255, 194, 209, 0.2);
+}
+
+/* افکت جذاب هاور روی هر چهارخونه */
+.grid-item:hover {
+    transform: translateY(-5px);
+    border-color: #ff477e;
+    background-color: #ffe5ec;
+    box-shadow: 0 8px 20px rgba(255, 71, 126, 0.2);
+}
+
+.grid-icon {
+    font-size: 35px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover .grid-icon {
+    transform: scale(1.15); /* بزرگ شدن ملایم آیکون هنگام هاور */
+}
+
+.grid-item span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #4f5d75;
+}
+
+/* 💨 انیمیشن بخار واقعی و جذاب برای قهوه */
+.steam-effect {
+    position: relative;
+}
+
+.steam-effect::after {
+    content: "💨";
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    opacity: 0;
+    animation: steamUp 2s infinite linear;
+}
+
+@keyframes steamUp {
+    0% {
+        top: -10px;
+        opacity: 0;
+        transform: translateX(-50%) scale(0.8);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateX(-40%) scale(1);
+    }
+    100% {
+        top: -30px;
+        opacity: 0;
+        transform: translateX(-60%) scale(1.2);
+    }
+}
+/* 📅 استایل اختصاصی تقویم مدرن */
+#datePicker {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ffc2d1;
+    border-radius: 12px;
+    font-size: 16px;
+    color: #4f5d75;
+    outline: none;
+    margin-bottom: 25px;
+    background-color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 194, 209, 0.1);
+}
+
+#datePicker:focus {
+    border-color: #ff477e;
+    box-shadow: 0 4px 15px rgba(255, 71, 126, 0.2);
+}
+
+
+
+
+
+   </style>
+</head>
+<body>
+
+    <div class="card" id="step1">
+        <div class="heart-icon">✨</div>
+        <h2>Hi Jonas :)! Eine kurze Frage...</h2>
+        <p>Hast du Lust, uns zu treffen? 😊</p>
+        <div class="btn-group">
+            <button onclick="nextStep(1, 2)">Ja, absolut! 😍</button>
+            <button id="escapBtn" onmouseover="flyAway()" ontouchstart="flyAway()">Nein,ich hasse dich 😢</button>
+            
+        </div>
+    </div>
+
+   <div class="card hidden" id="step2" style="max-width: 500px;">
+    <div style="margin-bottom: 15px;">
+     <img src="./Bob.jpeg" alt="Pink Panther" style="width: 140px; height: auto; filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.1));"  
+                alt="Pink Panther" 
+             style="width: 100px; height: auto; filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.1));">
+    </div>
+    
+    <h2>Super! Was machen wir?</h2>
+    <p>Worauf hättest du am meisten Lust?</p>
+   
+    <div class="grid-container">
+        <div class="grid-item" onclick="selectActivity('Döner 🥙')">
+            <div class="grid-icon">🥙</div>
+            <span>Döner</span>
+        </div>
+        <div class="grid-item" onclick="selectActivity('Kino 🍿')">
+            <div class="grid-icon">🍿</div>
+            <span>Kino</span>
+        </div>
+        <div class="grid-item" onclick="selectActivity('Kaffee ☕')">
+            <div class="grid-icon steam-effect">☕</div> <span>Kaffee</span>
+        </div>
+        <div class="grid-item" onclick="selectActivity('Abendessen 🍝')">
+            <div class="grid-item-inner">
+                <div class="grid-icon">🍝</div>
+                <span>Abendessen</span>
+            </div>
+        </div>
+        <div class="grid-item" onclick="selectActivity('Kneipe 🍹')">
+            <div class="grid-icon">🍹</div>
+            <span>Kneipe</span>
+        </div>
+    </div>
+</div>
+   <div class="card hidden" id="step3">
+        <div class="heart-icon">📅</div>
+        <h2>Wann hast du Zeit?</h2>
+        <p>Wähle einen Tag aus, der dir am besten passt:</p>
+        
+        <input type="date" id="datePicker">
+
+        <button class="submit-btn" id="submitBtn" onclick="finishProposal()">Bestätigen ✨</button>
+    </div>
+
+    <!-- 🌟 STEP 3.5: کادر جدید پیام صادقانه -->
+    <div class="card hidden" id="step3_5">
+        <div class="heart-icon">✏️</div>
+        <h2>Möchtest du mir noch etwas sagen?</h2>
+        <p>Hier kannst du mir ganz ehrlich schreiben, was du möchtest... ✨</p>
+        
+        <textarea id="userComment" placeholder="Schreib mir etwas Schönes... 💭" rows="4" style="width: 100%; padding: 12px; border: 2px solid #ffc2d1; border-radius: 12px; font-size: 15px; color: #4f5d75; outline: none; margin-bottom: 25px; resize: none; font-family: inherit; box-shadow: 0 4px 10px rgba(255,194,209,0.1);"></textarea>
+
+       <button class="submit-btn" id="finalSubmitBtn" onclick="sendAllData()">Absenden 🤍</button>
+    </div>
+
+    <div class="card hidden" id="step4">
+        <div class="heart-icon">❤️</div>
+        <h2>Perfekt!</h2>
+        <p id="summaryText">Deine Antworten wurden gesendet! Ich freue mich darauf! 🥰</p>
+    </div>
+
+   <script>
+        let choices = {
+            activity: '',
+            date: ''
+        };
+
+        function nextStep(current, next) {
+            document.getElementById('step' + current).classList.add('hidden');
+            document.getElementById('step' + next).classList.remove('hidden');
+        }
+
+        function selectActivity(activity) {
+            choices.activity = activity;
+            nextStep(2, 3);
+        }
+
+        function finishProposal() {
+           
+    // گرفتن تاریخ و ذخیره آن
+    const dateInput = document.getElementById('datePicker').value;
+    choices.date = dateInput; 
+    
+    // مخفی کردن تقویم و باز کردن صفحه کامنت
+    document.getElementById('step3').classList.add('hidden');
+    document.getElementById('step3_5').classList.remove('hidden');
+}
+
+function sendAllData() {
+    const commentInput = document.getElementById('userComment').value;
+    
+    // 🌟 استفاده از آیدی جدید برای دکمه دوم جهت جلوگیری از تداخل
+    const btn = document.getElementById('finalSubmitBtn');
+    if(btn) {
+        btn.innerText = "Sende...";
+        btn.disabled = true;
+    }
+
+    const formspreeUrl = "https://formspree.io/f/xwvdlnpp"; // 🔴 آیدی فرم‌اسپری خودت را بگذار
+
+    fetch(formspreeUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            Was: choices.activity,
+            Wann: choices.date,
+            Nachricht: commentInput
+        })
+    });
+
+    setTimeout(() => {
+        // مخفی کردن صفحه کامنت و رفتن به صفحه آخر
+        document.getElementById('step3_5').classList.add('hidden');
+        document.getElementById('step4').classList.remove('hidden');
+    }, 800);
+}
+
+
+           
+ 
+            
+          
+
+        function flyAway() {
+            const btn = document.getElementById('escapBtn');
+            btn.style.position = 'absolute';
+            const x = Math.random() * (window.innerWidth - btn.clientWidth - 40) + 20;
+            const y = Math.random() * (window.innerHeight - btn.clientHeight - 40) + 20;
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+
+
+
+        
+
+        // 🔒 کدهای قفل کردن تاریخ‌های گذشته را دقیقاً اینجا پِیست کن:
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('datePicker').min = today;
+        document.getElementById('datePicker').value = today; 
+
+        // تگ‌ها و توابع بعدی تو که از قبل اینجا هستند...
+        function nextStep(current, next) {
+            document.getElementById('step' + current).classList.add('hidden');
+            document.getElementById('step' + next).classList.remove('hidden');
+        }
+        
+        // ... بقیه کدهات
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </script> </body>
+</html>
+        
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
