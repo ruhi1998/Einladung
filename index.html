@@ -242,10 +242,21 @@
 
     <div class="card" id="step1">
         <div class="heart-icon">✨</div>
-        <h2>Hi Jonas :)! Eine kurze Frage...</h2>
-        <p>Hast du Lust, uns zu treffen? 😊</p>
+        <h2>Hey lieber  was geht ? :)</h2>
+        <p>Hast du Lust, uns in die näschte Woche  zu treffen? 😊</p>
+        <!-- 🌟 منوی انتخاب نام دوست -->
+    <div style="margin-bottom: 20px; text-align: left; width: 100%; max-width: 250px; margin-left: auto; margin-right: auto;">
+        <label for="friendSelect" style="display: block; margin-bottom: 8px; font-weight: bold; color: #4f5d75; font-size: 14px;">Wer bist du? 👇</label>
+        <select id="friendSelect" style="width: 100%; padding: 10px; border: 2px solid #ffc2d1; border-radius: 10px; outline: none; color: #4f5d75; font-weight: bold; background: white; cursor: pointer;">
+            <option value="Erik">Erik 👦</option>
+            <option value="Robin">Robin 👦</option>
+            <option value="Justin">Justin 👦</option>
+            <option value="Sofia">Sofia 👧</option>
+            <option value="Giorgia">Giorgia 👧</option>
+        </select>
+    </div>
         <div class="btn-group">
-            <button onclick="nextStep(1, 2)">Ja, absolut! 😍</button>
+            <button onclick="saveNameAndGo()">Ja, absolut! 😍</button>
             <button id="escapBtn" onmouseover="flyAway()" ontouchstart="flyAway()">Nein,ich hasse dich 😢</button>
             
         </div>
@@ -299,7 +310,7 @@
     <div class="card hidden" id="step3_5">
         <div class="heart-icon">✏️</div>
         <h2>Möchtest du mir noch etwas sagen?</h2>
-        <p>Hier kannst du mir ganz ehrlich schreiben, was du möchtest... ✨</p>
+        <p>Hier kannst du mir ganz ehrlich schreiben, was du möchtest...willst du lieber Zeit mit deier Freundin verbringen oder hast du andere Idee ?  ✨</p>
         
         <textarea id="userComment" placeholder="Schreib mir etwas Schönes... 💭" rows="4" style="width: 100%; padding: 12px; border: 2px solid #ffc2d1; border-radius: 12px; font-size: 15px; color: #4f5d75; outline: none; margin-bottom: 25px; resize: none; font-family: inherit; box-shadow: 0 4px 10px rgba(255,194,209,0.1);"></textarea>
 
@@ -309,14 +320,22 @@
     <div class="card hidden" id="step4">
         <div class="heart-icon">❤️</div>
         <h2>Perfekt!</h2>
-        <p id="summaryText">Deine Antworten wurden gesendet! Ich freue mich darauf! 🥰</p>
+        <p id="summaryText">Deine Antworten wurden gesendet! Ich freue mich darauf! jo machst gut 🥰</p>
     </div>
 
    <script>
         let choices = {
-            activity: '',
+            activity: 'Erik (böse Kumpel )',
             date: ''
         };
+        function saveNameAndGo() {
+    // خواندن اسم انتخاب شده از منوی کشویی
+    const selectedName = document.getElementById('friendSelect').value;
+    choices.name = selectedName;
+    
+    // حالا رفتن به مرحله بعد
+    nextStep(1, 2);
+}
 
         function nextStep(current, next) {
             document.getElementById('step' + current).classList.add('hidden');
@@ -357,7 +376,7 @@ function sendAllData() {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        body: JSON.stringify({
+        body: JSON.stringify({Wer: choices.name,
             Was: choices.activity,
             Wann: choices.date,
             Nachricht: commentInput
